@@ -23,7 +23,7 @@ Application {
     cpp.cxxFlags: project.cxxFlags
     cpp.linkerFlags: project.linkFlags
 
-    files: [ "*.cpp", "*.h" ]
+    files: [ "*.cpp", "*.h", "*.ui" ]
 
     Group {
         fileTagsFilter: product.type
