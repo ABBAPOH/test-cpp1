@@ -2,6 +2,7 @@
 #define CENTRALWIDGET_H
 
 #include <QtWidgets/QWidget>
+#include <QtCore/QVector>
 
 struct CircleFigure
 {
@@ -23,10 +24,11 @@ public:
     ~CentralWidget();
 
 protected:
-    void paintEvent(QPaintEvent * event) override;
+    void paintEvent(QPaintEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
-    CircleFigure _arr[CircleCount];
+    QVector<CircleFigure> _arr;
 };
 
 #endif // CENTRALWIDGET_H

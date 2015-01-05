@@ -10,12 +10,6 @@ CentralWidget::CentralWidget(QWidget *parent) :
     QWidget(parent)
 {
     qsrand(QDateTime::currentMSecsSinceEpoch());
-    for (int i = 0; i < CircleCount; i++) {
-        // use reentrant qrand() instead of not thread safe rand() function
-        _arr[i].x = qrand() % 500;
-        _arr[i].y = qrand() % 500;
-        _arr[i].radius = qrand() % 90 + 10;
-    }
 }
 
 CentralWidget::~CentralWidget()
@@ -28,11 +22,17 @@ void CentralWidget::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.fillRect(event->rect(), Qt::white);
 
-    for (int i = 0; i < CircleCount; ++i) {
-        const auto &circle = _arr[i];
+    for (const auto circle : _arr) {
         const auto radius = circle.radius;
         QRect rect(circle.x - radius, circle.y - radius, 2*radius, 2*radius);
         painter.drawArc(rect, 0, 16*360);
     }
+}
+
+void CentralWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    auto circle = CircleFigure(event->x(), event->y(), qrand() % 90 + 10);
+    _arr.append(circle);
+    update();
 }
 
