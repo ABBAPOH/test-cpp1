@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "centralwidget.h"
+
 #include <QtWidgets/QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -9,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setupConnections();
+    setCentralWidget(new CentralWidget(this));
 }
 
 MainWindow::~MainWindow()
