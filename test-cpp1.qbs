@@ -31,6 +31,8 @@ Project {
             return install_library_path + "/plugins"
     }
 
+    property stringList includePaths: [ path + "/include" ]
+
     property stringList cxxFlags: {
         if (qbs.targetOS.contains("osx"))
             return [ "-std=c++11", "-stdlib=libc++" ]

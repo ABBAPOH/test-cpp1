@@ -20,6 +20,7 @@ Application {
         cpp.minimumOsxVersion: "10.7"
     }
 
+    cpp.includePaths: project.includePaths
     cpp.cxxFlags: project.cxxFlags
     cpp.linkerFlags: project.linkFlags
 
