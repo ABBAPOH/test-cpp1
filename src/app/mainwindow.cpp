@@ -11,7 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setupConnections();
-    setCentralWidget(new CentralWidget(this));
+    auto widget = new CentralWidget(this);
+    ui->toolBar->addActions(widget->toolbarActions());
+    setCentralWidget(widget);
 }
 
 MainWindow::~MainWindow()
