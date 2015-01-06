@@ -1,20 +1,12 @@
 #ifndef CENTRALWIDGET_H
 #define CENTRALWIDGET_H
 
+#include "ifigure.h"
+
 #include <QtWidgets/QWidget>
 #include <QtCore/QVector>
 
-struct CircleFigure
-{
-    CircleFigure() {}
-    CircleFigure(int x, int y, int r) : x(x), y(y), radius(r) {}
-
-    int x {0};
-    int y {0}; // X, Y coordinates of circle center;
-    int radius {0}; // Circle radius
-};
-
-static const int CircleCount = 10;
+#include <memory>
 
 class CentralWidget : public QWidget
 {
@@ -28,7 +20,8 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
-    QVector<CircleFigure> _arr;
+    // Can't use QVector as long as it doesn't have emplace_back
+    std::vector<std::unique_ptr<IFigure>> _figures;
 };
 
 #endif // CENTRALWIDGET_H

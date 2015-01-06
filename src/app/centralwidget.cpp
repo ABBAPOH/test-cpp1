@@ -1,5 +1,7 @@
 #include "centralwidget.h"
 
+#include "circlefigure.h"
+
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
 
@@ -22,17 +24,13 @@ void CentralWidget::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.fillRect(event->rect(), Qt::white);
 
-    for (const auto circle : _arr) {
-        const auto radius = circle.radius;
-        QRect rect(circle.x - radius, circle.y - radius, 2*radius, 2*radius);
-        painter.drawArc(rect, 0, 16*360);
-    }
+    for (const auto &figure : _figures)
+        figure->draw(&painter);
 }
 
 void CentralWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    auto circle = CircleFigure(event->x(), event->y(), qrand() % 90 + 10);
-    _arr.append(circle);
+    _figures.emplace_back(new CircleFigure(event->x(), event->y(), qrand() % 90 + 10));
     update();
 }
 
