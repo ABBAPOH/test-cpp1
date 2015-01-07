@@ -57,6 +57,7 @@ void CentralWidget::createActions()
         if (count == 1) // select first figure by default
             action->trigger();
         _toolbarActions.append(action);
+        count++;
     }
 }
 
