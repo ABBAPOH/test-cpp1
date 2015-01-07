@@ -2,7 +2,7 @@
 #define SQUAREFIGURE_H
 
 #include "abstractfigure.h"
-#include "ifigurefactory.h"
+#include <IFigureFactory>
 
 #include <QtCore/QCoreApplication>
 

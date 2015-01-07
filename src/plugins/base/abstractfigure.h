@@ -1,7 +1,7 @@
 #ifndef ABSTRACTFIGURE_H
 #define ABSTRACTFIGURE_H
 
-#include "ifigure.h"
+#include <IFigure>
 
 class AbstractFigure : public IFigure
 {

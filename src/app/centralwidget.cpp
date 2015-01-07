@@ -1,6 +1,5 @@
 #include "centralwidget.h"
 
-#include "circlefigure.h"
 #include "figuremanager.h"
 
 #include <QtWidgets/QActionGroup>

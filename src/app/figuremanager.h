@@ -14,7 +14,9 @@ public:
     static FigureManager *instance();
 
     QVector<IFigureFactory *> factories() const;
-    void addFactory(IFigureFactory *factory);
+
+private:
+    void loadPlugins();
 
 private:
     QVector<IFigureFactory *> _factories;
