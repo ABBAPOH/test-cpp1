@@ -27,6 +27,7 @@ CentralWidget::~CentralWidget()
 void CentralWidget::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(event->rect(), Qt::white);
 
     for (const auto &figure : _figures)
