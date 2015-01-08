@@ -58,7 +58,7 @@ static inline QString getPluginPath()
     pluginPath += QLatin1String("lib");
     pluginPath += QLatin1String(LIB_SUFFIX);
     pluginPath += QLatin1Char('/');
-    pluginPath += QLatin1String("andromeda");
+    pluginPath += QLatin1String("cpp-test1");
     pluginPath += QLatin1Char('/');
     pluginPath += QLatin1String("plugins");
 #endif
