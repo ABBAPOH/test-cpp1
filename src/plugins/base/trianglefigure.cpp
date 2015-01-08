@@ -16,9 +16,6 @@ TriangleFigure::TriangleFigure(int x, int y, int size, qreal rotation) :
 void TriangleFigure::draw(QPainter *painter)
 {
     static const auto square3 = qSqrt(3.0);
-    QPoint top(0, - _size/square3);
-    QPoint left(- _size/2, _size/2/square3);
-    QPoint right(+ _size/2, _size/2/square3);
 
     painter->save();
 
@@ -26,6 +23,10 @@ void TriangleFigure::draw(QPainter *painter)
     matrix.translate(x(), y());
     matrix.rotate(_rotation);
     painter->setTransform(matrix);
+
+    const QPoint top(0, - _size/square3);
+    const QPoint left(- _size/2, _size/2/square3);
+    const QPoint right(+ _size/2, _size/2/square3);
 
     painter->drawLine(top, left);
     painter->drawLine(left, right);
