@@ -10,13 +10,14 @@
 class TriangleFigure : public AbstractFigure
 {
 public:
-    TriangleFigure(int x, int y, int size);
+    TriangleFigure(int x, int y, int size, qreal rotation);
 
     // IFigure interface
     void draw(QPainter *painter);
 
 private:
     int _size {0};
+    qreal _rotation {0};
 };
 
 class TriangleFigureFactory : public IFigureFactory

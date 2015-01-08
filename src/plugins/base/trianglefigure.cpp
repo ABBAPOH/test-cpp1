@@ -5,9 +5,10 @@
 
 #include <qmath.h>
 
-TriangleFigure::TriangleFigure(int x, int y, int size) :
+TriangleFigure::TriangleFigure(int x, int y, int size, qreal rotation) :
     AbstractFigure(x, y),
-    _size(size)
+    _size(size),
+    _rotation(rotation)
 {
 
 }
@@ -15,13 +16,22 @@ TriangleFigure::TriangleFigure(int x, int y, int size) :
 void TriangleFigure::draw(QPainter *painter)
 {
     static const auto square3 = qSqrt(3.0);
-    QPoint top(x(), y() - _size/square3);
-    QPoint left(x() - _size/2, y() + _size/2/square3);
-    QPoint right(x() + _size/2, y() + _size/2/square3);
+    QPoint top(0, - _size/square3);
+    QPoint left(- _size/2, _size/2/square3);
+    QPoint right(+ _size/2, _size/2/square3);
+
+    painter->save();
+
+    QTransform matrix;
+    matrix.translate(x(), y());
+    matrix.rotate(_rotation);
+    painter->setTransform(matrix);
 
     painter->drawLine(top, left);
     painter->drawLine(left, right);
     painter->drawLine(right, top);
+
+    painter->restore();
 }
 
 QString TriangleFigureFactory::name() const
@@ -36,5 +46,5 @@ QString TriangleFigureFactory::toolTip() const
 
 IFigure *TriangleFigureFactory::create(int x, int y)
 {
-    return new TriangleFigure(x, y, qrand() % 140 + 10);
+    return new TriangleFigure(x, y, qrand() % 140 + 10, qrand() % 360);
 }
