@@ -3,7 +3,12 @@ import qbs.base 1.0
 Project {
     property string app_target: qbs.targetOS.contains("osx") ? "Test Cpp 1" : "test-cpp1"
 
-    property string install_app_path: qbs.targetOS.contains("osx") ? "." : "bin"
+    property string install_app_path: {
+        if (qbs.targetOS.contains("osx") || qbs.targetOS.contains("windows"))
+            return ".";
+        else
+            return "bin";
+    }
     property string lib_suffix: ""
 
     property string install_binary_path: {

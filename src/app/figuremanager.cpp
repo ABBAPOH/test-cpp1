@@ -35,7 +35,9 @@ static QString getRootPath()
 {
     // Figure out root:  Up one from 'bin' or 'MacOs'
     QDir rootDir = QCoreApplication::applicationDirPath();
+#if !defined Q_OS_WIN
     rootDir.cdUp();
+#endif
     return rootDir.canonicalPath();
 }
 
